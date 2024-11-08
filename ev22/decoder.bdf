@@ -1,0 +1,2488 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect -720 568 -544 584)
+	(text "INPUT" (rect 133 0 161 10)(font "Arial" (font_size 6)))
+	(text "instruction[19..0]" (rect 5 0 87 12)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 17)(font "Arial" (font_size 6)))
+)
+(pin
+	(output)
+	(rect 2168 680 2373 696)
+	(text "OUTPUT" (rect 1 0 39 10)(font "Arial" (font_size 6)))
+	(text "microisntruction[33..0]" (rect 90 0 199 12)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(symbol
+	(rect 104 544 328 624)
+	(text "MIR_1" (rect 5 0 36 12)(font "Arial" ))
+	(text "mir1_b" (rect 8 64 41 76)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "INST[19..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "INST[19..0]" (rect 21 27 77 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "MICROINST[33..0]" (rect 0 0 93 12)(font "Arial" ))
+		(text "MICROINST[33..0]" (rect 125 27 218 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 3))
+	)
+	(parameter
+		"iBUSA_H"
+		"33"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSA_L"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_H"
+		"27"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_L"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_H"
+		"21"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_L"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_H"
+		"15"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_L"
+		"12"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_H"
+		"11"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_L"
+		"10"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iKMX"
+		"9"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_H"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_L"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_H"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_L"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"BSR_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_u"
+		"1111111111111111110000000000000110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_u"
+		"1111111111111111100000000000001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_u"
+		"1111111111111111010000001000001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_u"
+		"1111111111011111010111001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_u"
+		"1111111111011111010110001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_u"
+		"1111111111011111010101001011001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_u"
+		"1111111111111111110000000101000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_u"
+		"1111111111111111110000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_u"
+		"1111111111011111110101000011110100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_u"
+		"1111111111011111110001000000100100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_u"
+		"1111111111111111010000000000011000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_u"
+		"1111111111011111010111000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_u"
+		"1111111111011111010110000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_u"
+		"1111111111011111010101000011011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_u"
+		"1111111111111111110010000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_u"
+		"1111111111111111110000010000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_u"
+		"1111111111111111110000100000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_u"
+		"1111111111111111110000110000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_u"
+		"1111111111111111111101000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_u"
+		"1111111111111111111110000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_u"
+		"1111111111111111111011000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_u"
+		"1111111111111111111100000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_u"
+		"1111111111011111010011000000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_u"
+		"1111111111011111010001010000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_u"
+		"1111111111011111010001100000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_u"
+		"1111111111011111010001110000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_u"
+		"1111011111111111011101000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_u"
+		"1111011111111111011110000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_u"
+		"1111111111111111110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"BSR_i"
+		"00010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_i"
+		"00100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_i"
+		"00110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_i"
+		"01000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_i"
+		"01010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_i"
+		"01100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_i"
+		"01110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_i"
+		"10000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_i"
+		"11000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_i"
+		"11010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_i"
+		"11100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_i"
+		"11110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_i"
+		"00001000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_i"
+		"00001001000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_i"
+		"00000000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_i"
+		"00000000010000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_i"
+		"00000000010100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_i"
+		"00000000011000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_i"
+		"00000000011100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_i"
+		"00000000100000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_i"
+		"00000000100100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_i"
+		"00000000101000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_i"
+		"00000000101100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_i"
+		"00000000110000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_i"
+		"00000000110100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_i"
+		"00000000000000100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_i"
+		"00000000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_i"
+		"00000000000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_i"
+		"00000000000010010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_i"
+		"00000000000010100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_i"
+		"00000000000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_i"
+		"00000000000011000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_i"
+		"00000000000011010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_i"
+		"00000000000011110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 208 64))
+	)
+	(annotation_block (parameter)(rect 8 504 400 520))
+)
+(symbol
+	(rect 104 712 328 792)
+	(text "MIR_2" (rect 5 0 36 12)(font "Arial" ))
+	(text "mir2_b" (rect 8 64 41 81)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "INST[19..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "INST[19..0]" (rect 21 27 77 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "MICROINST[33..0]" (rect 0 0 93 12)(font "Arial" ))
+		(text "MICROINST[33..0]" (rect 125 27 218 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 3))
+	)
+	(parameter
+		"iBUSA_H"
+		"33"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSA_L"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_H"
+		"27"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_L"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_H"
+		"21"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_L"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_H"
+		"15"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_L"
+		"12"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_H"
+		"11"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_L"
+		"10"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iKMX"
+		"9"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_H"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_L"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_H"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_L"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"BSR_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_u"
+		"1111111111111111110000000000000110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_u"
+		"1111111111111111100000000000001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_u"
+		"1111111111111111010000001000001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_u"
+		"1111111111011111010111001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_u"
+		"1111111111011111010110001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_u"
+		"1111111111011111010101001011001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_u"
+		"1111111111111111110000000101000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_u"
+		"1111111111111111110000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_u"
+		"1111111111011111110101000011110100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_u"
+		"1111111111011111110001000000100100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_u"
+		"1111111111111111010000000000011000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_u"
+		"1111111111011111010111000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_u"
+		"1111111111011111010110000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_u"
+		"1111111111011111010101000011011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_u"
+		"1111111111111111110010000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_u"
+		"1111111111111111110000010000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_u"
+		"1111111111111111110000100000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_u"
+		"1111111111111111110000110000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_u"
+		"1111111111111111111101000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_u"
+		"1111111111111111111110000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_u"
+		"1111111111111111111011000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_u"
+		"1111111111111111111100000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_u"
+		"1111111111011111010011000000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_u"
+		"1111111111011111010001010000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_u"
+		"1111111111011111010001100000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_u"
+		"1111111111011111010001110000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_u"
+		"1111011111111111011101000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_u"
+		"1111011111111111011110000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_u"
+		"1111111111111111110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"BSR_i"
+		"00010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_i"
+		"00100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_i"
+		"00110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_i"
+		"01000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_i"
+		"01010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_i"
+		"01100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_i"
+		"01110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_i"
+		"10000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_i"
+		"11000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_i"
+		"11010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_i"
+		"11100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_i"
+		"11110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_i"
+		"00001000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_i"
+		"00001001000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_i"
+		"00000000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_i"
+		"00000000010000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_i"
+		"00000000010100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_i"
+		"00000000011000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_i"
+		"00000000011100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_i"
+		"00000000100000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_i"
+		"00000000100100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_i"
+		"00000000101000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_i"
+		"00000000101100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_i"
+		"00000000110000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_i"
+		"00000000110100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_i"
+		"00000000000000100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_i"
+		"00000000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_i"
+		"00000000000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_i"
+		"00000000000010010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_i"
+		"00000000000010100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_i"
+		"00000000000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_i"
+		"00000000000011000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_i"
+		"00000000000011010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_i"
+		"00000000000011110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 208 64))
+	)
+	(annotation_block (parameter)(rect 40 672 432 688))
+)
+(symbol
+	(rect 112 904 336 984)
+	(text "MIR_3" (rect 5 0 36 12)(font "Arial" ))
+	(text "mir3_b" (rect 8 64 41 81)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "INST[19..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "INST[19..0]" (rect 21 27 77 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "MICROINST[33..0]" (rect 0 0 93 12)(font "Arial" ))
+		(text "MICROINST[33..0]" (rect 125 27 218 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 3))
+	)
+	(parameter
+		"iBUSA_H"
+		"33"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSA_L"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_H"
+		"27"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_L"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_H"
+		"21"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_L"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_H"
+		"15"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_L"
+		"12"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_H"
+		"11"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_L"
+		"10"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iKMX"
+		"9"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_H"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_L"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_H"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_L"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"BSR_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_u"
+		"1111111111111111110000000000000110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_u"
+		"1111111111111111100000000000001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_u"
+		"1111111111111111010000001000001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_u"
+		"1111111111011111010111001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_u"
+		"1111111111011111010110001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_u"
+		"1111111111011111010101001011001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_u"
+		"1111111111111111110000000101000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_u"
+		"1111111111111111110000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_u"
+		"1111111111011111110101000011110100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_u"
+		"1111111111011111110001000000100100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_u"
+		"1111111111111111010000000000011000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_u"
+		"1111111111011111010111000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_u"
+		"1111111111011111010110000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_u"
+		"1111111111011111010101000011011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_u"
+		"1111111111111111110010000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_u"
+		"1111111111111111110000010000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_u"
+		"1111111111111111110000100000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_u"
+		"1111111111111111110000110000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_u"
+		"1111111111111111111101000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_u"
+		"1111111111111111111110000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_u"
+		"1111111111111111111011000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_u"
+		"1111111111111111111100000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_u"
+		"1111111111011111010011000000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_u"
+		"1111111111011111010001010000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_u"
+		"1111111111011111010001100000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_u"
+		"1111111111011111010001110000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_u"
+		"1111011111111111011101000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_u"
+		"1111011111111111011110000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_u"
+		"1111111111111111110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"BSR_i"
+		"00010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_i"
+		"00100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_i"
+		"00110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_i"
+		"01000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_i"
+		"01010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_i"
+		"01100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_i"
+		"01110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_i"
+		"10000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_i"
+		"11000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_i"
+		"11010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_i"
+		"11100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_i"
+		"11110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_i"
+		"00001000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_i"
+		"00001001000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_i"
+		"00000000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_i"
+		"00000000010000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_i"
+		"00000000010100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_i"
+		"00000000011000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_i"
+		"00000000011100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_i"
+		"00000000100000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_i"
+		"00000000100100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_i"
+		"00000000101000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_i"
+		"00000000101100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_i"
+		"00000000110000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_i"
+		"00000000110100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_i"
+		"00000000000000100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_i"
+		"00000000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_i"
+		"00000000000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_i"
+		"00000000000010010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_i"
+		"00000000000010100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_i"
+		"00000000000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_i"
+		"00000000000011000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_i"
+		"00000000000011010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_i"
+		"00000000000011110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 208 64))
+	)
+	(annotation_block (parameter)(rect 40 872 432 888))
+)
+(symbol
+	(rect 112 1104 336 1184)
+	(text "MIR_4" (rect 5 0 36 12)(font "Arial" ))
+	(text "mir4_b" (rect 8 64 41 81)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "INST[19..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "INST[19..0]" (rect 21 27 77 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "MICROINST[33..0]" (rect 0 0 93 12)(font "Arial" ))
+		(text "MICROINST[33..0]" (rect 125 27 218 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 3))
+	)
+	(parameter
+		"iBUSA_H"
+		"33"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSA_L"
+		"28"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_H"
+		"27"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSB_L"
+		"22"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_H"
+		"21"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iBUSC_L"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_H"
+		"15"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iALUC_L"
+		"12"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_H"
+		"11"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iSH_L"
+		"10"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iKMX"
+		"9"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_H"
+		"8"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iT_L"
+		"2"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_H"
+		"1"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"iM_L"
+		"0"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"BSR_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_u"
+		"1111111111111111110000000000000110"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_u"
+		"1111111111111111100000000000001001"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_u"
+		"1111111111111111010000001000001000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_u"
+		"1111111111011111010111001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_u"
+		"1111111111011111010110001000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_u"
+		"1111111111011111010101001011001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_u"
+		"1111111111111111110000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_u"
+		"1111111111111111110000000100000100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_u"
+		"1111111111111111110000000101000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_u"
+		"1111111111111111110000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_u"
+		"1111111111011111110101000011110100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_u"
+		"1111111111011111110001000000100100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_u"
+		"1111111111111111010000000000011000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_u"
+		"1111111111011111010111000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_u"
+		"1111111111011111010110000000011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_u"
+		"1111111111011111010101000011011100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_u"
+		"1111111111111111110010000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_u"
+		"1111111111111111110000010000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_u"
+		"1111111111111111110000100000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_u"
+		"1111111111111111110000110000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_u"
+		"1111111111111111111101000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_u"
+		"1111111111111111111110000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_u"
+		"1111111111111111111011000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_u"
+		"1111111111111111111100000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_u"
+		"1111111111011111010011000000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_u"
+		"1111111111011111010001010000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_u"
+		"1111111111011111010001100000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_u"
+		"1111111111011111010001110000001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_u"
+		"1111011111111111011101000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_u"
+		"1111011111111111011110000010001100"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_u"
+		"1111111111111111110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"BSR_i"
+		"00010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVMw_i"
+		"00100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwM_i"
+		"00110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwK_i"
+		"01000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwK_i"
+		"01010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwK_i"
+		"01100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwK_i"
+		"01110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"RET_i"
+		"10000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JMP_i"
+		"11000000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JZE_i"
+		"11010000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JNE_i"
+		"11100000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"JCY_i"
+		"11110000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVij_i"
+		"00001000000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDij_i"
+		"00001001000000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOViw_i"
+		"00000000000100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"MOVwj_i"
+		"00000000010000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ANDwj_i"
+		"00000000010100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ORwj_i"
+		"00000000011000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ADDwj_i"
+		"00000000011100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLi_i"
+		"00000000100000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLi_i"
+		"00000000100100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRi_i"
+		"00000000101000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRi_i"
+		"00000000101100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCi_i"
+		"00000000110000000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECi_i"
+		"00000000110100000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CLC_i"
+		"00000000000000100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SEC_i"
+		"00000000000000110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"CPLw_i"
+		"00000000000010000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHLw_i"
+		"00000000000010010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"SHRw_i"
+		"00000000000010100000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"ASRw_i"
+		"00000000000010110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"INCw_i"
+		"00000000000011000000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"DECw_i"
+		"00000000000011010000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(parameter
+		"NOP_i"
+		"00000000000011110000"
+		""
+		(type "PARAMETER_UNSIGNED_BIN")	)
+	(drawing
+		(rectangle (rect 16 16 208 64))
+	)
+	(annotation_block (parameter)(rect 32 1048 424 1064))
+)
+(symbol
+	(rect 464 1136 544 1200)
+	(text "BAND4" (rect 0 33 10 63)(font "Arial" (font_size 6))(vertical))
+	(text "band_b" (rect 67 37 84 72)(font "Intel Clear" )(vertical))
+	(port
+		(pt 32 64)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 23 45 35 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 32 64)(pt 32 54))
+	)
+	(port
+		(pt 16 64)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 7 45 19 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 16 64)(pt 16 54))
+	)
+	(port
+		(pt 48 64)
+		(input)
+		(text "IN3" (rect 2 39 19 51)(font "Courier New" (bold))(invisible))
+		(text "IN3" (rect 39 45 51 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 48 64)(pt 48 54))
+	)
+	(port
+		(pt 64 64)
+		(input)
+		(text "IN4" (rect 2 55 19 67)(font "Courier New" (bold))(invisible))
+		(text "IN4" (rect 55 45 67 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 64 64)(pt 64 54))
+	)
+	(port
+		(pt 40 0)
+		(output)
+		(text "OUT" (rect 48 31 65 43)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 31 -1 43 16)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 40 18)(pt 40 0))
+	)
+	(drawing
+		(line (pt 53 46)(pt 53 30))
+		(line (pt 28 46)(pt 28 30))
+		(line (pt 67 46)(pt 13 46))
+		(arc (pt 52 30)(pt 28 30)(rect 28 17 53 42))
+		(circle (rect 12 46 20 54))
+		(circle (rect 28 46 36 54))
+		(circle (rect 44 46 52 54))
+		(circle (rect 60 46 68 54))
+	)
+	(rotate90)
+)
+(symbol
+	(rect 1016 984 1096 1048)
+	(text "BAND4" (rect 0 33 10 63)(font "Arial" (font_size 6))(vertical))
+	(text "band2_b" (rect 67 37 84 78)(font "Intel Clear" )(vertical))
+	(port
+		(pt 32 64)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 23 45 35 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 32 64)(pt 32 54))
+	)
+	(port
+		(pt 16 64)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 7 45 19 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 16 64)(pt 16 54))
+	)
+	(port
+		(pt 48 64)
+		(input)
+		(text "IN3" (rect 2 39 19 51)(font "Courier New" (bold))(invisible))
+		(text "IN3" (rect 39 45 51 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 48 64)(pt 48 54))
+	)
+	(port
+		(pt 64 64)
+		(input)
+		(text "IN4" (rect 2 55 19 67)(font "Courier New" (bold))(invisible))
+		(text "IN4" (rect 55 45 67 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 64 64)(pt 64 54))
+	)
+	(port
+		(pt 40 0)
+		(output)
+		(text "OUT" (rect 48 31 65 43)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 31 -1 43 16)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 40 18)(pt 40 0))
+	)
+	(drawing
+		(line (pt 53 46)(pt 53 30))
+		(line (pt 28 46)(pt 28 30))
+		(line (pt 67 46)(pt 13 46))
+		(arc (pt 52 30)(pt 28 30)(rect 28 17 53 42))
+		(circle (rect 12 46 20 54))
+		(circle (rect 28 46 36 54))
+		(circle (rect 44 46 52 54))
+		(circle (rect 60 46 68 54))
+	)
+	(rotate90)
+)
+(symbol
+	(rect 1648 776 1728 840)
+	(text "BAND4" (rect 0 33 10 63)(font "Arial" (font_size 6))(vertical))
+	(text "band3_b" (rect 67 37 84 78)(font "Intel Clear" )(vertical))
+	(port
+		(pt 32 64)
+		(input)
+		(text "IN2" (rect 2 23 19 35)(font "Courier New" (bold))(invisible))
+		(text "IN2" (rect 23 45 35 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 32 64)(pt 32 54))
+	)
+	(port
+		(pt 16 64)
+		(input)
+		(text "IN1" (rect 2 7 19 19)(font "Courier New" (bold))(invisible))
+		(text "IN1" (rect 7 45 19 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 16 64)(pt 16 54))
+	)
+	(port
+		(pt 48 64)
+		(input)
+		(text "IN3" (rect 2 39 19 51)(font "Courier New" (bold))(invisible))
+		(text "IN3" (rect 39 45 51 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 48 64)(pt 48 54))
+	)
+	(port
+		(pt 64 64)
+		(input)
+		(text "IN4" (rect 2 55 19 67)(font "Courier New" (bold))(invisible))
+		(text "IN4" (rect 55 45 67 62)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 64 64)(pt 64 54))
+	)
+	(port
+		(pt 40 0)
+		(output)
+		(text "OUT" (rect 48 31 65 43)(font "Courier New" (bold))(invisible))
+		(text "OUT" (rect 31 -1 43 16)(font "Courier New" (bold))(vertical)(invisible))
+		(line (pt 40 18)(pt 40 0))
+	)
+	(drawing
+		(line (pt 53 46)(pt 53 30))
+		(line (pt 28 46)(pt 28 30))
+		(line (pt 67 46)(pt 13 46))
+		(arc (pt 52 30)(pt 28 30)(rect 28 17 53 42))
+		(circle (rect 12 46 20 54))
+		(circle (rect 28 46 36 54))
+		(circle (rect 44 46 52 54))
+		(circle (rect 60 46 68 54))
+	)
+	(rotate90)
+)
+(symbol
+	(rect 544 1008 816 1120)
+	(text "mux_32" (rect 5 0 43 12)(font "Arial" ))
+	(text "mux1_b" (rect 8 96 46 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "a[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "a[BUS_WIDTH-1..0]" (rect 21 27 121 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "b[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "b[BUS_WIDTH-1..0]" (rect 21 43 121 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "sel" (rect 0 0 14 12)(font "Arial" ))
+		(text "sel" (rect 21 59 35 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 272 32)
+		(output)
+		(text "out[BUS_WIDTH-1..0]" (rect 0 0 109 12)(font "Arial" ))
+		(text "out[BUS_WIDTH-1..0]" (rect 159 27 268 39)(font "Arial" ))
+		(line (pt 272 32)(pt 256 32)(line_width 3))
+	)
+	(parameter
+		"BUS_WIDTH"
+		"34"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 256 96))
+	)
+	(annotation_block (parameter)(rect 816 968 997 1006))
+)
+(symbol
+	(rect 1096 840 1368 952)
+	(text "mux_32" (rect 5 0 43 12)(font "Arial" ))
+	(text "mux2_b" (rect 8 96 45 113)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "a[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "a[BUS_WIDTH-1..0]" (rect 21 27 121 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "b[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "b[BUS_WIDTH-1..0]" (rect 21 43 121 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "sel" (rect 0 0 14 12)(font "Arial" ))
+		(text "sel" (rect 21 59 35 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 272 32)
+		(output)
+		(text "out[BUS_WIDTH-1..0]" (rect 0 0 109 12)(font "Arial" ))
+		(text "out[BUS_WIDTH-1..0]" (rect 159 27 268 39)(font "Arial" ))
+		(line (pt 272 32)(pt 256 32)(line_width 3))
+	)
+	(parameter
+		"BUS_WIDTH"
+		"34"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 256 96))
+	)
+	(annotation_block (parameter)(rect 1368 800 1549 838))
+)
+(symbol
+	(rect 1752 656 2024 768)
+	(text "mux_32" (rect 5 0 43 12)(font "Arial" ))
+	(text "mux3_b" (rect 8 96 45 113)(font "Intel Clear" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "a[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "a[BUS_WIDTH-1..0]" (rect 21 27 121 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "b[BUS_WIDTH-1..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "b[BUS_WIDTH-1..0]" (rect 21 43 121 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "sel" (rect 0 0 14 12)(font "Arial" ))
+		(text "sel" (rect 21 59 35 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 272 32)
+		(output)
+		(text "out[BUS_WIDTH-1..0]" (rect 0 0 109 12)(font "Arial" ))
+		(text "out[BUS_WIDTH-1..0]" (rect 159 27 268 39)(font "Arial" ))
+		(line (pt 272 32)(pt 256 32)(line_width 3))
+	)
+	(parameter
+		"BUS_WIDTH"
+		"34"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 256 96))
+	)
+	(annotation_block (parameter)(rect 2024 616 2205 654))
+)
+(connector
+	(text "instruction[19..0]" (rect 26 560 103 577)(font "Intel Clear" ))
+	(pt 104 576)
+	(pt 16 576)
+	(bus)
+)
+(connector
+	(text "instruction[19..0]" (rect 26 728 103 745)(font "Intel Clear" ))
+	(pt 104 744)
+	(pt 16 744)
+	(bus)
+)
+(connector
+	(text "instruction[19..0]" (rect 34 920 111 937)(font "Intel Clear" ))
+	(pt 112 936)
+	(pt 24 936)
+	(bus)
+)
+(connector
+	(text "instruction[19..0]" (rect 34 1120 111 1137)(font "Intel Clear" ))
+	(pt 112 1136)
+	(pt 24 1136)
+	(bus)
+)
+(connector
+	(pt 336 1136)
+	(pt 448 1136)
+	(bus)
+)
+(connector
+	(pt 336 936)
+	(pt 448 936)
+	(bus)
+)
+(connector
+	(text "instruction[19..0]" (rect -495 560 -418 577)(font "Intel Clear" ))
+	(pt -544 576)
+	(pt -416 576)
+	(bus)
+)
+(connector
+	(pt -416 576)
+	(pt -152 576)
+	(bus)
+)
+(connector
+	(text "instruction[19]" (rect -388 584 -321 601)(font "Intel Clear" ))
+	(pt -416 600)
+	(pt -304 600)
+)
+(connector
+	(pt -416 576)
+	(pt -416 600)
+	(bus)
+)
+(connector
+	(text "instruction[18]" (rect -386 608 -319 625)(font "Intel Clear" ))
+	(pt -416 624)
+	(pt -304 624)
+)
+(connector
+	(pt -416 600)
+	(pt -416 624)
+	(bus)
+)
+(connector
+	(pt -416 624)
+	(pt -416 648)
+	(bus)
+)
+(connector
+	(text "instruction[17]" (rect -388 632 -321 649)(font "Intel Clear" ))
+	(pt -416 648)
+	(pt -304 648)
+)
+(connector
+	(text "instruction[16]" (rect -388 656 -321 673)(font "Intel Clear" ))
+	(pt -416 672)
+	(pt -304 672)
+)
+(connector
+	(text "instruction[15]" (rect -396 712 -329 729)(font "Intel Clear" ))
+	(pt -304 728)
+	(pt -416 728)
+)
+(connector
+	(text "instruction[14]" (rect -394 736 -327 753)(font "Intel Clear" ))
+	(pt -304 752)
+	(pt -416 752)
+)
+(connector
+	(text "instruction[13]" (rect -396 760 -329 777)(font "Intel Clear" ))
+	(pt -304 776)
+	(pt -416 776)
+)
+(connector
+	(text "instruction[12]" (rect -396 784 -329 801)(font "Intel Clear" ))
+	(pt -304 800)
+	(pt -416 800)
+)
+(connector
+	(pt -416 648)
+	(pt -416 672)
+	(bus)
+)
+(connector
+	(pt -416 672)
+	(pt -416 728)
+	(bus)
+)
+(connector
+	(pt -416 728)
+	(pt -416 752)
+	(bus)
+)
+(connector
+	(pt -416 752)
+	(pt -416 776)
+	(bus)
+)
+(connector
+	(pt -416 776)
+	(pt -416 800)
+	(bus)
+)
+(connector
+	(pt -416 800)
+	(pt -416 856)
+	(bus)
+)
+(connector
+	(pt -416 856)
+	(pt -416 880)
+	(bus)
+)
+(connector
+	(pt -416 880)
+	(pt -416 904)
+	(bus)
+)
+(connector
+	(pt -416 904)
+	(pt -416 928)
+	(bus)
+)
+(connector
+	(pt -416 928)
+	(pt -416 960)
+	(bus)
+)
+(connector
+	(text "instruction[11]" (rect -396 840 -329 857)(font "Intel Clear" ))
+	(pt -304 856)
+	(pt -416 856)
+)
+(connector
+	(text "instruction[10]" (rect -394 864 -327 881)(font "Intel Clear" ))
+	(pt -304 880)
+	(pt -416 880)
+)
+(connector
+	(text "instruction[9]" (rect -396 888 -335 905)(font "Intel Clear" ))
+	(pt -304 904)
+	(pt -416 904)
+)
+(connector
+	(text "instruction[8]" (rect -396 912 -335 929)(font "Intel Clear" ))
+	(pt -304 928)
+	(pt -416 928)
+)
+(connector
+	(pt 328 744)
+	(pt 960 744)
+	(bus)
+)
+(connector
+	(pt 448 1040)
+	(pt 544 1040)
+	(bus)
+)
+(connector
+	(pt 448 936)
+	(pt 448 1040)
+	(bus)
+)
+(connector
+	(pt 448 1056)
+	(pt 544 1056)
+	(bus)
+)
+(connector
+	(pt 448 1136)
+	(pt 448 1056)
+	(bus)
+)
+(connector
+	(pt 480 1200)
+	(pt 480 1264)
+)
+(connector
+	(pt 496 1200)
+	(pt 496 1288)
+)
+(connector
+	(pt 528 1200)
+	(pt 528 1264)
+)
+(connector
+	(text "instruction[10]" (rect 406 1272 473 1289)(font "Intel Clear" ))
+	(pt 496 1288)
+	(pt 400 1288)
+)
+(connector
+	(text "instruction[11]" (rect 405 1248 472 1265)(font "Intel Clear" ))
+	(pt 400 1264)
+	(pt 480 1264)
+)
+(connector
+	(pt 512 1200)
+	(pt 512 1288)
+)
+(connector
+	(text "instruction[8]" (rect 547 1248 608 1265)(font "Intel Clear" ))
+	(pt 608 1264)
+	(pt 528 1264)
+)
+(connector
+	(text "instruction[9]" (rect 545 1272 606 1289)(font "Intel Clear" ))
+	(pt 608 1288)
+	(pt 512 1288)
+)
+(connector
+	(pt 504 1072)
+	(pt 504 1136)
+)
+(connector
+	(pt 504 1072)
+	(pt 544 1072)
+)
+(connector
+	(pt 952 1040)
+	(pt 816 1040)
+	(bus)
+)
+(connector
+	(pt 328 576)
+	(pt 1576 576)
+	(bus)
+)
+(connector
+	(pt 1664 840)
+	(pt 1664 896)
+)
+(connector
+	(pt 1680 840)
+	(pt 1680 920)
+)
+(connector
+	(pt 1696 840)
+	(pt 1696 920)
+)
+(connector
+	(pt 1712 840)
+	(pt 1712 896)
+)
+(connector
+	(text "instruction[19]" (rect 1589 880 1656 897)(font "Intel Clear" ))
+	(pt 1584 896)
+	(pt 1664 896)
+)
+(connector
+	(text "instruction[18]" (rect 1590 904 1657 921)(font "Intel Clear" ))
+	(pt 1680 920)
+	(pt 1584 920)
+)
+(connector
+	(text "instruction[17]" (rect 1731 880 1798 897)(font "Intel Clear" ))
+	(pt 1792 896)
+	(pt 1712 896)
+)
+(connector
+	(text "instruction[16]" (rect 1729 904 1796 921)(font "Intel Clear" ))
+	(pt 1792 920)
+	(pt 1696 920)
+)
+(connector
+	(pt 952 888)
+	(pt 1096 888)
+	(bus)
+)
+(connector
+	(pt 952 1040)
+	(pt 952 888)
+	(bus)
+)
+(connector
+	(pt 960 872)
+	(pt 1096 872)
+	(bus)
+)
+(connector
+	(pt 960 744)
+	(pt 960 872)
+	(bus)
+)
+(connector
+	(pt 1032 1048)
+	(pt 1032 1104)
+)
+(connector
+	(pt 1048 1048)
+	(pt 1048 1128)
+)
+(connector
+	(pt 1064 1048)
+	(pt 1064 1128)
+)
+(connector
+	(pt 1080 1048)
+	(pt 1080 1104)
+)
+(connector
+	(text "instruction[15]" (rect 957 1088 1024 1105)(font "Intel Clear" ))
+	(pt 952 1104)
+	(pt 1032 1104)
+)
+(connector
+	(text "instruction[14]" (rect 958 1112 1025 1129)(font "Intel Clear" ))
+	(pt 1048 1128)
+	(pt 952 1128)
+)
+(connector
+	(text "instruction[13]" (rect 1099 1088 1166 1105)(font "Intel Clear" ))
+	(pt 1160 1104)
+	(pt 1080 1104)
+)
+(connector
+	(text "instruction[12]" (rect 1097 1112 1164 1129)(font "Intel Clear" ))
+	(pt 1160 1128)
+	(pt 1064 1128)
+)
+(connector
+	(pt 1056 904)
+	(pt 1056 984)
+)
+(connector
+	(pt 1056 904)
+	(pt 1096 904)
+)
+(connector
+	(pt 1576 704)
+	(pt 1576 872)
+	(bus)
+)
+(connector
+	(pt 1368 872)
+	(pt 1576 872)
+	(bus)
+)
+(connector
+	(pt 1752 704)
+	(pt 1576 704)
+	(bus)
+)
+(connector
+	(pt 1576 576)
+	(pt 1576 688)
+	(bus)
+)
+(connector
+	(pt 1752 688)
+	(pt 1576 688)
+	(bus)
+)
+(connector
+	(pt 1688 720)
+	(pt 1688 776)
+)
+(connector
+	(pt 1688 720)
+	(pt 1752 720)
+)
+(connector
+	(pt 2168 688)
+	(pt 2024 688)
+	(bus)
+)
+(junction (pt -416 576))
+(junction (pt -416 600))
+(junction (pt -416 624))
+(junction (pt -416 648))
+(junction (pt -416 672))
+(junction (pt -416 856))
+(junction (pt -416 880))
+(junction (pt -416 904))
+(junction (pt -416 728))
+(junction (pt -416 752))
+(junction (pt -416 776))
+(junction (pt -416 800))
+(junction (pt -416 928))
+(text "First Nybble" (rect -280 616 -152 642)(font "Intel Clear" (font_size 14)(bold)))
+(text "Second Nybble" (rect -280 752 -119 778)(font "Intel Clear" (font_size 14)(bold)))
+(text "Third Nybble" (rect -280 880 -141 906)(font "Intel Clear" (font_size 14)(bold)))

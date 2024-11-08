@@ -1,0 +1,9 @@
+// SH_16
+
+module SH_16 (Zin, SH_op, Zout);
+
+input [15:0] Zin;
+input [1:0] 
+
+
+endmodule

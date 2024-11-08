@@ -1,0 +1,23 @@
+// uINST_LIST
+`ifndef _uinst_list_h
+`define _uinst_list_h
+
+parameter iBUSA_H = 33,
+parameter iBUSA_L = 28,
+parameter iBUSB_H = 27,
+parameter iBUSB_L = 22,
+parameter iBUSC_H = 21,
+parameter iBUSC_L = 16,
+parameter iALUC_H = 15,
+parameter iALUC_L = 12,
+parameter iSH_H   = 11,
+parameter iSH_H   = 10,
+parameter iKMX    = 9,
+parameter iT_H    = 8,
+parameter iT_L    = 2,
+parameter iM_H    = 1,
+parameter iM_L    = 0,
+//                    AAAAAA_BBBBBB_CCCCCC_ALUC_SH_K_TTTTTTT_MM
+parameter NOP_u = 34'b111111_111111_111111_0000_00_0_0000000_00
+
+`endif

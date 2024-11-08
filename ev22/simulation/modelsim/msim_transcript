@@ -1,0 +1,73 @@
+# Reading pref.tcl
+# do IFU_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example {C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:32:05 on Jun 21,2022
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example" C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v 
+# -- Compiling module RAM_ALEX
+# 
+# Top level modules:
+# 	RAM_ALEX
+# End time: 19:32:05 on Jun 21,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim -gui -l msim_transcript work.RAM_ALEX -L cycloneive_ver -L altera_ver
+# vsim -gui -l msim_transcript work.RAM_ALEX -L cycloneive_ver -L altera_ver 
+# Start time: 19:32:31 on Jun 21,2022
+# Loading work.RAM_ALEX
+# ** Error: (vsim-3033) Instantiation of 'altsyncram' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 63
+#         Searched libraries:
+#             C:/intelFPGA/20.1/modelsim_ase/altera/verilog/cycloneive
+#             C:/intelFPGA/20.1/modelsim_ase/altera/verilog/altera
+#             C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/simulation/modelsim/rtl_work
+# Error loading design
+# End time: 19:32:31 on Jun 21,2022, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+vsim -gui -l msim_transcript -L cycloneive_ver -L altera_ver -L altera_mf -L altera_mf_ver work.RAM_ALEX
+# vsim -gui -l msim_transcript -L cycloneive_ver -L altera_ver -L altera_mf -L altera_mf_ver work.RAM_ALEX 
+# Start time: 19:33:19 on Jun 21,2022
+# Loading work.RAM_ALEX
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.clock_enable_input_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 88
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.clock_enable_output_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 89
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.init_file.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 93
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.intended_device_family.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 96
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.lpm_hint.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 97
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.lpm_type.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 98
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.numwords_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 99
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.operation_mode.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 100
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.outdata_aclr_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 101
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.outdata_reg_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 102
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.power_up_uninitialized.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 103
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.read_during_write_mode_port_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 104
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.widthad_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 105
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.width_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 106
+# ** Error (suppressible): (vsim-10000) Unresolved defparam reference to 'altsyncram_component' in altsyncram_component.width_byteena_a.
+#    Time: 0 ps  Iteration: 0  Instance: /RAM_ALEX File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/RAM_ALEX.v Line: 107
+# Error loading design
+# End time: 19:33:19 on Jun 21,2022, Elapsed time: 0:00:00
+# Errors: 15, Warnings: 0

@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at MIR_IV.v(46): always construct contains both blocking and non-blocking assignments File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/MIR_IV.v Line: 46
+Warning (10268): Verilog HDL information at MIR_III.v(43): always construct contains both blocking and non-blocking assignments File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/MIR_III.v Line: 43
+Warning (10268): Verilog HDL information at MIR_II.v(42): always construct contains both blocking and non-blocking assignments File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/MIR_II.v Line: 42
+Warning (10268): Verilog HDL information at MIR_I.v(45): always construct contains both blocking and non-blocking assignments File: C:/Users/alero/Desktop/QUARTUS_GIAN/EV22-G1/example/MIR_I.v Line: 45
